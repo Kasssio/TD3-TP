@@ -15,7 +15,8 @@ Billetera::Billetera(const id_billetera id, Blockchain* blockchain)
 id_billetera Billetera::id() const {
   return _id;
 }
-
+//hola santi
+//chirimbolo santi
 void Billetera::notificar_transaccion(Transaccion t) {
 }
 
