@@ -1,0 +1,13 @@
+# ninja log v5
+28	125	1748958972620522100	CMakeFiles/tests.dir/calendario.cpp.o	76758fa2219ee92e
+27	753	1748958973249092000	CMakeFiles/tests.dir/blockchain.cpp.o	9f31d8f1db13749f
+26	787	1748958973277853900	CMakeFiles/tests.dir/billetera.cpp.o	f63bd1a39f084cfb
+34	1311	1748958977945350500	_deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o	4487df84f84257a
+29	1562	1748958978195469100	CMakeFiles/tests.dir/tests/tests_billetera.cpp.o	165bdd97abd3787d
+27	1736	1748958978371194500	CMakeFiles/tests.dir/tests/tests_blockchain.cpp.o	8bc4cf0a752065c6
+31	3988	1748958980608219700	_deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o	9a785c514943641f
+4002	5313	1748958981948738700	lib/libgtestd.a	845569bf6cd4451f
+5315	5427	1748958982063215400	lib/libgtest_maind.a	4947431c6251f349
+5428	6831	1748958983470616200	tests	5927c016dc4be852
+5428	6831	1748958983470616200	tests[1]_tests.cmake	5927c016dc4be852
+5428	6831	1748958983470616200	/workspaces/TD3-TP/build/tests[1]_tests.cmake	5927c016dc4be852

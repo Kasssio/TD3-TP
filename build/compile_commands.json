@@ -1,0 +1,47 @@
+[
+{
+  "directory": "/workspaces/TD3-TP/build",
+  "command": "/usr/bin/g++ -isystem /workspaces/TD3-TP/build/_deps/googletest-src/googletest/include -isystem /workspaces/TD3-TP/build/_deps/googletest-src/googletest -g -o CMakeFiles/tests.dir/tests/tests_blockchain.cpp.o -c /workspaces/TD3-TP/tests/tests_blockchain.cpp",
+  "file": "/workspaces/TD3-TP/tests/tests_blockchain.cpp"
+},
+{
+  "directory": "/workspaces/TD3-TP/build",
+  "command": "/usr/bin/g++ -isystem /workspaces/TD3-TP/build/_deps/googletest-src/googletest/include -isystem /workspaces/TD3-TP/build/_deps/googletest-src/googletest -g -o CMakeFiles/tests.dir/tests/tests_billetera.cpp.o -c /workspaces/TD3-TP/tests/tests_billetera.cpp",
+  "file": "/workspaces/TD3-TP/tests/tests_billetera.cpp"
+},
+{
+  "directory": "/workspaces/TD3-TP/build",
+  "command": "/usr/bin/g++ -isystem /workspaces/TD3-TP/build/_deps/googletest-src/googletest/include -isystem /workspaces/TD3-TP/build/_deps/googletest-src/googletest -g -o CMakeFiles/tests.dir/billetera.cpp.o -c /workspaces/TD3-TP/billetera.cpp",
+  "file": "/workspaces/TD3-TP/billetera.cpp"
+},
+{
+  "directory": "/workspaces/TD3-TP/build",
+  "command": "/usr/bin/g++ -isystem /workspaces/TD3-TP/build/_deps/googletest-src/googletest/include -isystem /workspaces/TD3-TP/build/_deps/googletest-src/googletest -g -o CMakeFiles/tests.dir/blockchain.cpp.o -c /workspaces/TD3-TP/blockchain.cpp",
+  "file": "/workspaces/TD3-TP/blockchain.cpp"
+},
+{
+  "directory": "/workspaces/TD3-TP/build",
+  "command": "/usr/bin/g++ -isystem /workspaces/TD3-TP/build/_deps/googletest-src/googletest/include -isystem /workspaces/TD3-TP/build/_deps/googletest-src/googletest -g -o CMakeFiles/tests.dir/calendario.cpp.o -c /workspaces/TD3-TP/calendario.cpp",
+  "file": "/workspaces/TD3-TP/calendario.cpp"
+},
+{
+  "directory": "/workspaces/TD3-TP/build",
+  "command": "/usr/bin/g++ -I/workspaces/TD3-TP/build/_deps/googletest-src/googlemock/include -I/workspaces/TD3-TP/build/_deps/googletest-src/googlemock -isystem /workspaces/TD3-TP/build/_deps/googletest-src/googletest/include -isystem /workspaces/TD3-TP/build/_deps/googletest-src/googletest -g -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o -c /workspaces/TD3-TP/build/_deps/googletest-src/googlemock/src/gmock-all.cc",
+  "file": "/workspaces/TD3-TP/build/_deps/googletest-src/googlemock/src/gmock-all.cc"
+},
+{
+  "directory": "/workspaces/TD3-TP/build",
+  "command": "/usr/bin/g++ -isystem /workspaces/TD3-TP/build/_deps/googletest-src/googlemock/include -isystem /workspaces/TD3-TP/build/_deps/googletest-src/googlemock -isystem /workspaces/TD3-TP/build/_deps/googletest-src/googletest/include -isystem /workspaces/TD3-TP/build/_deps/googletest-src/googletest -g -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o -c /workspaces/TD3-TP/build/_deps/googletest-src/googlemock/src/gmock_main.cc",
+  "file": "/workspaces/TD3-TP/build/_deps/googletest-src/googlemock/src/gmock_main.cc"
+},
+{
+  "directory": "/workspaces/TD3-TP/build",
+  "command": "/usr/bin/g++ -I/workspaces/TD3-TP/build/_deps/googletest-src/googletest/include -I/workspaces/TD3-TP/build/_deps/googletest-src/googletest -g -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o -c /workspaces/TD3-TP/build/_deps/googletest-src/googletest/src/gtest-all.cc",
+  "file": "/workspaces/TD3-TP/build/_deps/googletest-src/googletest/src/gtest-all.cc"
+},
+{
+  "directory": "/workspaces/TD3-TP/build",
+  "command": "/usr/bin/g++ -isystem /workspaces/TD3-TP/build/_deps/googletest-src/googletest/include -isystem /workspaces/TD3-TP/build/_deps/googletest-src/googletest -g -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o -c /workspaces/TD3-TP/build/_deps/googletest-src/googletest/src/gtest_main.cc",
+  "file": "/workspaces/TD3-TP/build/_deps/googletest-src/googletest/src/gtest_main.cc"
+}
+]
