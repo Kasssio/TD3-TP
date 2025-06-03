@@ -6,6 +6,11 @@
 #include "lib.h"
 #include "blockchain.h"
 
+#include <set>
+
+// Agregamos typedef
+typedef unsigned int id_billetera;
+
 using namespace std;
 
 class Billetera {
@@ -55,7 +60,7 @@ class Billetera {
     monto saldo_al_fin_del_dia(timestamp t) const;
 
     /**
-     * Devuelve las últimas `k` transaccionesen las que esta billetera participó
+     * Devuelve las últimas `k` transacciones en las que esta billetera participó
      * (ya sea como origen o destino). Incluye la transacción semilla.
      *
      * Complejidad esperada: O(k)
@@ -76,6 +81,16 @@ class Billetera {
 
     /** Puntero a la blockchain asociada */
     Blockchain* const _blockchain;
+
+
+    vector<id_billetera> _frecuentes;
+    vector<Transaccion> _recientes; 
+    map<timestamp, monto> _saldo_por_dia;
+
+    map<id_billetera, int> _cantidad_transacciones; // a destinatarios
+
+    monto _saldo;
+
 };
 
 #endif

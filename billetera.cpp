@@ -5,6 +5,12 @@
 #include "billetera.h"
 #include "blockchain.h"
 
+/*
+  INVARIANTE DE REP:
+
+*/
+
+
 using namespace std;
 
 Billetera::Billetera(const id_billetera id, Blockchain* blockchain)
@@ -15,17 +21,31 @@ Billetera::Billetera(const id_billetera id, Blockchain* blockchain)
 id_billetera Billetera::id() const {
   return _id;
 }
-//hola santi
-//chirimbolo santi
-void Billetera::notificar_transaccion(Transaccion t) {
-}
 
+void Billetera::notificar_transaccion(Transaccion t) {
+  _recientes.push_back(t);
+  if (t.origen == _id) {
+    _saldo-=t.monto;
+  }
+  if (t.destino == _id) {
+    _saldo+=t.monto;
+  }
+
+
+  timestamp fin_del_dia = Calendario::fin_del_dia(t._timestamp);
+  _saldo_por_dia[fin_del_dia] = _saldo; // log(D)
+}
+// 
 monto Billetera::saldo() const {
-  // hola
-  return _blockchain->calcular_saldo(this);
+  return _saldo;
+  // return _blockchain->calcular_saldo(this);
 }
 
 monto Billetera::saldo_al_fin_del_dia(timestamp t) const {
+
+  // timestamp fin_del_dia = Calendario::fin_del_dia(t); // O(1)
+  // return _saldo_por_dia[t]; // log(D) arreglar despues
+
   const list<Transaccion> transacciones = _blockchain->transacciones();
   timestamp fin_del_dia = Calendario::fin_del_dia(t);
 
@@ -46,25 +66,42 @@ monto Billetera::saldo_al_fin_del_dia(timestamp t) const {
 }
 
 vector<Transaccion> Billetera::ultimas_transacciones(int k) const {
-  const list<Transaccion> transacciones = _blockchain->transacciones();
-
+  auto it = _recientes.rbegin();
   vector<Transaccion> ret;
-
-  // Notar que `rbegin` y `rend` recorren la lista en orden inverso.
-  auto it = transacciones.rbegin();
-  while(it != transacciones.rend() && ret.size() < k) {
-    bool transaccion_relevante = it->origen == _id || it->destino == _id;
-    if (transaccion_relevante) {
-      ret.push_back(*it);
-    }
-
-    ++it;
+  while (it != _recientes.rend() && ret.size() < k){
+    ret.push_back(*it);
+    it++;
   }
-
   return ret;
+
+  // const list<Transaccion> transacciones = _blockchain->transacciones();
+
+  // vector<Transaccion> ret;
+
+  // // Notar que `rbegin` y `rend` recorren la lista en orden inverso.
+  // auto it = transacciones.rbegin();
+  // while(it != transacciones.rend() && ret.size() < k) {
+  //   bool transaccion_relevante = it->origen == _id || it->destino == _id;
+  //   if (transaccion_relevante) {
+  //     ret.push_back(*it);
+  //   }
+
+  //   ++it;
+  // }
+
+  // return ret;
 }
 
 vector<id_billetera> Billetera::detinatarios_mas_frecuentes(int k) const {
+  
+  // vector<id_billetera> ret;
+  // int i = 0;
+  // while (i < _frecuentes.size() && i < k){
+  //   ret.push_back(_frecuentes[i]);
+  // }
+  // return ret;
+
+
   const list<Transaccion> transacciones = _blockchain->transacciones();
 
   // cuento la cantidad de transacciones salientes por cada billetera de destino
