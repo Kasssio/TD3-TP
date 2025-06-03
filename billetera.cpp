@@ -20,6 +20,7 @@ void Billetera::notificar_transaccion(Transaccion t) {
 }
 
 monto Billetera::saldo() const {
+  // hola
   return _blockchain->calcular_saldo(this);
 }
 
