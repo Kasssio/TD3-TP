@@ -4,7 +4,7 @@
 #include "calendario.h"
 #include "billetera.h"
 #include "blockchain.h"
-
+#include <iostream>
 /*
   INVARIANTE DE REP:
 
@@ -15,8 +15,9 @@ using namespace std;
 
 Billetera::Billetera(const id_billetera id, Blockchain* blockchain)
   : _id(id)
-  , _blockchain(blockchain) {
-}
+  , _blockchain(blockchain)
+  , _saldo(0) // seteamos saldo en 0 asi no agarra basura
+  {}
 
 id_billetera Billetera::id() const {
   return _id;
@@ -35,34 +36,34 @@ void Billetera::notificar_transaccion(Transaccion t) {
   timestamp fin_del_dia = Calendario::fin_del_dia(t._timestamp);
   _saldo_por_dia[fin_del_dia] = _saldo; // log(D)
 }
-// 
+
 monto Billetera::saldo() const {
   return _saldo;
-  // return _blockchain->calcular_saldo(this);
+  //return _blockchain->calcular_saldo(this);
 }
 
 monto Billetera::saldo_al_fin_del_dia(timestamp t) const {
 
-  // timestamp fin_del_dia = Calendario::fin_del_dia(t); // O(1)
-  // return _saldo_por_dia[t]; // log(D) arreglar despues
+  timestamp fin_del_dia = Calendario::fin_del_dia(t); // O(1)
+  return _saldo_por_dia.at(fin_del_dia); // log(D) arreglar despues
 
-  const list<Transaccion> transacciones = _blockchain->transacciones();
-  timestamp fin_del_dia = Calendario::fin_del_dia(t);
+//   const list<Transaccion> transacciones = _blockchain->transacciones();
+//   timestamp fin_del_dia = Calendario::fin_del_dia(t);
 
-  monto ret = 0;
+//   monto ret = 0;
 
-  auto it = transacciones.begin();
-  while (it != transacciones.end() && it->_timestamp < fin_del_dia) {
-    if (it->origen == _id) {
-      ret -= it->monto;
-    } else if (it->destino == _id) {
-      ret += it->monto;
-    }
+//   auto it = transacciones.begin();
+//   while (it != transacciones.end() && it->_timestamp < fin_del_dia) {
+//     if (it->origen == _id) {
+//       ret -= it->monto;
+//     } else if (it->destino == _id) {
+//       ret += it->monto;
+//     }
 
-    ++it;
-  }
+//     ++it;
+//   }
 
-  return ret;
+//   return ret;
 }
 
 vector<Transaccion> Billetera::ultimas_transacciones(int k) const {

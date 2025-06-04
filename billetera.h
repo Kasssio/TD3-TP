@@ -85,10 +85,10 @@ class Billetera {
 
     vector<id_billetera> _frecuentes;
     vector<Transaccion> _recientes; 
-    map<timestamp, monto> _saldo_por_dia;
-
+    
     map<id_billetera, int> _cantidad_transacciones; // a destinatarios
-
+    
+    map<timestamp, monto> _saldo_por_dia;
     monto _saldo;
 
 };
