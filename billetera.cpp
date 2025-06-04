@@ -5,6 +5,8 @@
 #include "billetera.h"
 #include "blockchain.h"
 #include <iostream>
+#include <map>
+
 /*
   INVARIANTE DE REP:
 
@@ -32,8 +34,17 @@ void Billetera::notificar_transaccion(Transaccion t) {
     _saldo+=t.monto;
   }
 
+  
 
+  for (timestamp d = 86400 * 2; d < Calendario::fin_del_dia(Calendario::tiempo_actual()); d+=86400){ // O(D*log(D))
+    if (_saldo_por_dia.count(d) == 0){
+      _saldo_por_dia[d] = _saldo_por_dia[d-86400]; 
+    }
+  }
+
+  
   timestamp fin_del_dia = Calendario::fin_del_dia(t._timestamp);
+  // cout << "SALDO: "<< _saldo << " FIN DEL DIA: " << fin_del_dia << endl;
   _saldo_por_dia[fin_del_dia] = _saldo; // log(D)
 }
 
@@ -44,7 +55,10 @@ monto Billetera::saldo() const {
 
 monto Billetera::saldo_al_fin_del_dia(timestamp t) const {
 
+  if (_recientes[_recientes.size()-1]._timestamp < t) return _saldo;
+
   timestamp fin_del_dia = Calendario::fin_del_dia(t); // O(1)
+  // cout << "DIA BUSCADO: "<< fin_del_dia << endl;
   return _saldo_por_dia.at(fin_del_dia); // log(D) arreglar despues
 
 //   const list<Transaccion> transacciones = _blockchain->transacciones();
