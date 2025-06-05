@@ -7,7 +7,6 @@
 #include "blockchain.h"
 
 #include <set>
-
 // Agregamos typedef
 typedef unsigned int id_billetera;
 
@@ -87,6 +86,7 @@ class Billetera {
     vector<Transaccion> _recientes; 
     
     map<id_billetera, int> _cantidad_transacciones; // a destinatarios
+    map<int, vector<id_billetera>> _cantidad_transacciones_invertido; // por num de transacciones da vector de ids
     
     map<timestamp, monto> _saldo_por_dia;
     monto _saldo;
