@@ -1,15 +1,24 @@
 ## [Link a documentación de LaTeX](https://ashki23.github.io/markdown-latex.html#latex-equations)
 ### Invariante de representación:
-$$ \large \text{Rep(B:Billetera)} \equiv \text{TransaccionesBlockchain(B)} = \text{listT} \land \text{EsSaldo} \textunderscore \text{actualizado(} \textunderscore \text{saldo, listT, B)} \land $$ $$ \large \text{Es} \textunderscore \text{recientes(listT, B, } \textunderscore \text{recientes)} \land \text{EsCant} \textunderscore \text{Transacciones(} \textunderscore \text{cant} \textunderscore \text{transacciones, } \textunderscore \text{cant} \textunderscore \text{transacciones} \textunderscore \text{invertido} \land $$
-$$ \large \text{EsFrecuentes(} \textunderscore \text{cant} \textunderscore \text{transacciones} \textunderscore \text{invertido, } \textunderscore \text{frecuentes)} \land \text{EsSaldo} \textunderscore \text{por} \textunderscore \text{dia(} \textunderscore \text{saldo} \textunderscore \text{por} \textunderscore \text{dia, listT, B)}$$
-
-
-### Funciones auxiliares:
-
-$$\large \text{Es} \textunderscore \text{saldo} \textunderscore \text{actualizado(S:monto)} \equiv S = \sum_{\text{i=0}}^{\text{|list|-1}} \beta \ \text{(listT[i].destino == B.id) } \cdot \text{ list[i].monto} - \text{(listT[i].origen == B.id) } \cdot \text{ list[i].monto} $$
 
 $$
-\large \text{Es}\textunderscore\text{recientes}( \text{listT:vector}\langle\text{transaccion}\rangle, B:\text{Billetera}, \textunderscore\text{recientes}:\text{vector}\langle\text{Transaccion}\rangle ) = |\textunderscore\text{recientes}| = |\text{listT}| \land (\forall i \in \mathbb{N})(0 \le i < |\textunderscore\text{recientes}| - 1 \Rightarrow \textunderscore\text{recientes[i]} \ge \textunderscore\text{recientes[i+1])}
+\text{rep}(B:text{Billetera}) = \text{saldosCorrectos}(B) \land \text{EsRecientes}(B) \land \text{EsFrecuentes}(B)
+$$
+
+### Funciones del rep:
+$$
+\text{SaldosCorrectos}(B:\text{Billetera}) \equiv 
+( \exists \ \text{UT:transaccion}) \text{EsUltimaTransacción}(\text{UT}) \land B.\textunderscore saldo = B.\textunderscore \text{saldo} \textunderscore \text{por} \textunderscore \text{dia}(\text{Fin}(\text{UT}.\textunderscore \text{timestamp})) \land 
+( \forall T : \text{Transacción}) \  0 \le T.\textunderscore timestamp \le \text{Fin}(\text{UT}.\textunderscore timestamp) \land 
+\left( \text{EsPrincipioDeDía}(T.\textunderscore timestamp) \Rightarrow \text{EsSaldoActualizadoPorDía}(B, T.\textunderscore timestamp) \right)
+$$
+
+### Funciones auxiliares
+$$
+\text{EsUltimaTransacción}(B\:\text{Billetera},\ T\:\text{Transacción}) \equiv 
+L = \text{transaccionesBlockchain}(B) \land 
+( \exists i : int) \ 0 \le i < |L| \land L[i] = T \land 
+\neg (\exists j : int) 0 \le j < |L| \land j \ne i \land L[j].\textunderscore timestamp > L[i].\textunderscore timestamp))
 $$
 
 
