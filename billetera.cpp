@@ -8,8 +8,15 @@
 #include <map>
 /*
   INVARIANTE DE REP:
-
-*/
+  REP:
+  -  _blockchain es la blockchain en la que participa una billetera valida.
+  -  _saldo_por_dia asigna un monto al final del dia de cada timestamp que sea menor al final del dia de la ultima transaccion. el monto esta determinado por el saldo acumulado hasta ese momento.
+  -  _saldo es el valor de la ultima clave de _saldo_por_dia.
+  -  _recientes contiene todas las transacciones en las que participo la billetera con los timestamps en orden de mas a menos reciente.
+  -  _cantidad_transacciones asigna a cada id la cantidad de veces que billetera le transfirio.
+  -  _cantidad_transacciones_invertido asigna a un numero un vector de ids con los que billetera envio una transaccion esa cantidad de veces (basado en _cantidad_transacciones).
+  -  _frecuentes es un vector de ids ordenado de mas a menos frecuentes (basado en _cantidad_transacciones_invertido).
+  */
 
 
 using namespace std;
@@ -27,7 +34,7 @@ Billetera::Billetera(const id_billetera id, Blockchain* blockchain)
 
 id_billetera Billetera::id() const {
   return _id; // O(1)
-}
+} // Complejidad Final: O(1)
 
 void Billetera::notificar_transaccion(Transaccion t) {
   _recientes.push_back(t); // O(1)
@@ -74,11 +81,17 @@ void Billetera::notificar_transaccion(Transaccion t) {
   
   timestamp fin_del_dia = Calendario::fin_del_dia(t._timestamp); // O(1)
   _saldo_por_dia[fin_del_dia] = _saldo; // log(D)
-} // Complejdad final: O()
+} 
+// Complejdad final: O(1) + O(1) + O(1) + O(log C) + O(log C) + O(1) + O(log C) + O(1) + S * (O(1) + O(1)) + O(log C) + O(log C) + O(1) + C *O(it->second) + O(1) + O(1) + O(1) + D*(O(log D)+O(logD)) + O(1) + O(log D) 
+// = O(log C) + O(S) + O(log C) + O(C) + O(D * log D) + O(log D)
+// = O(max{log C, S, C, log D}) + O(D * log D)
+// = O(C) + O(D * log D)
+// = O(D * log D + C)
 
 monto Billetera::saldo() const {
   return _saldo; // O(1)
 }
+// Complejidad final: O(1)
 
 monto Billetera::saldo_al_fin_del_dia(timestamp t) const {
 
@@ -87,6 +100,9 @@ monto Billetera::saldo_al_fin_del_dia(timestamp t) const {
   timestamp fin_del_dia = Calendario::fin_del_dia(t); // O(1)
   return _saldo_por_dia.at(fin_del_dia); // log(D)
 }
+// Complejidad final: O(1) + O(1) + O(log D)
+// = O(1) + O(log D)
+// = O(log D)
 
 vector<Transaccion> Billetera::ultimas_transacciones(int k) const {
   auto it = _recientes.rbegin(); // O(1)
@@ -96,7 +112,8 @@ vector<Transaccion> Billetera::ultimas_transacciones(int k) const {
     it++; // O(1)
   }
   return ret; // O(1)
-} // Complejidad final: O()
+} // Complejidad final: O(1) + O(1) + k * (O(1) + O(1)) + O(1)
+  // = O(max{k, 1}) = O(k)
 
 vector<id_billetera> Billetera::detinatarios_mas_frecuentes(int k) const {
   
@@ -109,4 +126,5 @@ vector<id_billetera> Billetera::detinatarios_mas_frecuentes(int k) const {
   }
   return ret; // O(1)
 
-}
+} // Complejidad final: O(1) + O(1) + O(1) + k * (O(1) + O(1)) + O(1)  
+  // = O(max{k, 1}) = O(k)
